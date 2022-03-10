@@ -1,25 +1,25 @@
 # Clone the Repository
 
-git clone urldestination.git
+1. git clone urldestination.git
 
 ## Install all dependencies
 
-npm install
+2. npm install
 
 ### Get https://exchangeratesapi.io/ api access key
 
-Paste it to .env file
+3. Paste it to .env file
 
 REACT_APP_API_KEY =
 
 #### Start the project
 
-npm start
+4. npm start
 
 #### Open the browser - port 3000
 
-Paste price to promt terminal
+5. Paste price to promt terminal
 
 #### Check result
 
-At Devs console log
+6. At Devs console log

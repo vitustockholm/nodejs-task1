@@ -5,7 +5,6 @@ let resultFirst = Number;
 let resultSecond = Number;
 let resultThird = Number;
 let result = Number;
-let guess = Number;
 
 // Origin prices from reklama website
 const firstPrice = 500;
@@ -20,13 +19,14 @@ const PricePage = () => {
   const [rate, setRate] = useState('');
   // Side effects
   useEffect(() => {
+    // check REACT APP API KEY .env file / use from website
     const url = `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.REACT_APP_API_KEY}`;
     // Async - Await fetch
     const fetchData = async () => {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        // Set state value from async fetch
+        // Set state value from async fetched rates.USD
         setRate(data.rates.USD);
         // Error handling **must thing after package releases
       } catch (error) {
@@ -42,7 +42,7 @@ const PricePage = () => {
     return Number.parseFloat(x).toFixed(2);
   }
 
-  // Content Component
+  // Content returned Component
   return (
     <>
       <div className='hero'>
@@ -52,20 +52,24 @@ const PricePage = () => {
         <ul>
           <p> Converted prices *from euros:</p>
           <li>
-            <b>500 EUR = {(resultFirst = rate * firstPrice).toFixed(2)} USD</b>
-          </li>
-          <li>
             <b>
-              1000 EUR = {(resultSecond = rate * secondPrice).toFixed(2)} USD
+              500 EUR = {(resultFirst = expoNumbers(firstPrice * rate))} USD
             </b>
           </li>
           <li>
-            <b>1500 EUR = {(resultThird = rate * thirdPrice).toFixed(2)} USD</b>
+            <b>
+              1000 EUR = {(resultSecond = expoNumbers(secondPrice * rate))} USD
+            </b>
+          </li>
+          <li>
+            <b>
+              1500 EUR = {(resultThird = expoNumbers(thirdPrice * rate))} USD
+            </b>
           </li>
         </ul>
         {expoNumbers(guessTerminal * rate) + ' USD'}
       </div>
-      {/* / DEV T.E.S.T.I.N.G. TERMINAL / */}
+      {/* / DEV T.E.S.T.I.N.G. on TERMINAL / */}
 
       {/* {console.log(
         expoNumbers(resultFirst) +
